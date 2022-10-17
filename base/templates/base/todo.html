@@ -1,0 +1,23 @@
+<h2>Task</h2>
+<div>
+    <form action="/" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input class="btn btn-info" type="submit" value="submit">
+    </form>
+</div>
+<div>
+    <h3>Task Lists</h3>
+    {% for task in tasks %}
+    <a href="{% url 'update' task.id %}">Edit</a>
+    <a href="{% url 'delete' task.id %}">Delete</a>
+
+    {% if task.completed == True %}
+    <strike>{{task}}</strike>
+    <br>
+    {% else %}
+    <span>{{task}}</span>
+    <br>
+    {% endif %}
+    {% endfor %}
+</div>
